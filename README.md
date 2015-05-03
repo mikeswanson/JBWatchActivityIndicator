@@ -19,9 +19,9 @@ After you've designed a look that you like, tap the _Output Image Frames_ button
 
 ## Usage
 
-To use the exported image sequence, first copy the numbered files to the bundle of your WatchKit app (not your WatchKit extension). I'd highly recommend putting them an assets library.
+To use the exported image sequence, first copy the numbered files to the bundle of your WatchKit app (not your WatchKit extension). I'd highly recommend putting them in an assets library.
 
-Then, to animate the image from your WatchKit extension:
+Then, to animate the images from your WatchKit extension:
 
         // Animate a series of images prefixed with the string "Activity"
         [self.interfaceImage setImageNamed:@"Activity"];
