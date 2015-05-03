@@ -9,6 +9,8 @@ One common approach is to use a _WKInterfaceImage_ object to display an animatio
 
 I created _JBWatchActivityIndicator_ to make it easier to configure and generate a series of images.
 
+If you'd just like to grab some Apple-like images, check out the [Common Images](https://github.com/mikeswanson/JBWatchActivityIndicator/tree/master/Common%20Images) folder.
+
 Here's an example from the included project that shows some of the attributes that can be interactively modified.
 
 ![JBWatchActivityIndicator Example](http://www.mikeswanson.com/files/JBWatchActivityIndicator/JBWatchActivityIndicator.gif)
