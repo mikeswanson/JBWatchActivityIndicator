@@ -49,6 +49,8 @@ static const double PI2 = M_PI * 2.0;
     self = [super init];
     if (self) {
 
+        _segmentStyle = JBWatchActivityIndicatorSegmentStyleCircle;
+        _strokeSpacingDegrees = 1.0f;
         _indicatorRadius = 10.0f;
         _brightestAlpha = (254.0f / 255.0f);
         _darkestAlpha = (57.0f / 255.0f);
@@ -86,6 +88,18 @@ static const double PI2 = M_PI * 2.0;
                                    (type == JBWatchActivityIndicatorTypeRingSmall ? 0.5f : 2.0f));
                 break;
             }
+            case JBWatchActivityIndicatorTypeSegments:
+            case JBWatchActivityIndicatorTypeSegmentsSmall:
+            case JBWatchActivityIndicatorTypeSegmentsLarge: {
+                
+                _segmentStyle = JBWatchActivityIndicatorSegmentStyleStroke;
+                _numberOfSegments = 8;
+                _segmentRadius = 6.0f;
+                _strokeSpacingDegrees = 2.0f;
+                _indicatorScale = (type == JBWatchActivityIndicatorTypeSegments ? 1.0f :
+                                   (type == JBWatchActivityIndicatorTypeSegmentsSmall ? 0.5f : 2.0f));
+                break;
+            }
             default: {
                 
                 NSAssert(NO, @"Invalid type");
@@ -116,15 +130,15 @@ static const double PI2 = M_PI * 2.0;
 }
 
 - (UIImage *)imageForFrameAtIndex:(NSUInteger)frameIndex {
-
+    
     // Sizing
     CGFloat imageSize = ceilf(((self.indicatorRadius * 2.0f) + (self.segmentRadius * 2.0f)) * self.indicatorScale);
-
+    
     // Shading
     CGFloat semiAmplitude = ((self.brightestAlpha - self.darkestAlpha) * 0.5f);
     CGFloat alphaAxis = (self.darkestAlpha + semiAmplitude);
     CGFloat frameAngle = (((CGFloat)frameIndex / (CGFloat)self.numberOfFrames) * PI2);
-
+    
     // Because we're generating Watch images, use a 2.0 scale factor
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(imageSize, imageSize), NO, 2.0f);
     
@@ -135,29 +149,49 @@ static const double PI2 = M_PI * 2.0;
     // Offset by half of a segment
     CGFloat angleOffset = (0.5f / (CGFloat)self.numberOfSegments) * PI2;
     
+    CGFloat strokeSpacingRadians = (self.strokeSpacingDegrees * M_PI / 180.0f) * 0.5f;
+    
     for (NSUInteger segmentIndex = 0; segmentIndex < self.numberOfSegments; segmentIndex++) {
-        
-        CGFloat segmentAngle = angleOffset + (((CGFloat)segmentIndex / (CGFloat)self.numberOfSegments) * PI2);
-        
-        CGPoint segmentCenter = CGPointMake((self.indicatorRadius * cosf(segmentAngle)),
-                                            (self.indicatorRadius * sinf(segmentAngle)));
-        
-        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(segmentCenter.x - self.segmentRadius,
-                                                                               segmentCenter.y - self.segmentRadius,
-                                                                               self.segmentRadius * 2.0f,
-                                                                               self.segmentRadius * 2.0f)];
-        
         
         CGFloat alphaAngle = (((CGFloat)(self.numberOfSegments - segmentIndex) / (CGFloat)self.numberOfSegments) * PI2);
         CGFloat alpha = alphaAxis + (sinf(frameAngle + alphaAngle) * semiAmplitude);
         
-        [[UIColor colorWithWhite:1.0f alpha:alpha] setFill];
-        [path fill];
+        if (self.segmentStyle == JBWatchActivityIndicatorSegmentStyleCircle) {
+            
+            CGFloat segmentAngle = angleOffset + (((CGFloat)segmentIndex / (CGFloat)self.numberOfSegments) * PI2);
+            
+            CGPoint segmentCenter = CGPointMake((self.indicatorRadius * cosf(segmentAngle)),
+                                                (self.indicatorRadius * sinf(segmentAngle)));
+            
+            UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(segmentCenter.x - self.segmentRadius,
+                                                                                   segmentCenter.y - self.segmentRadius,
+                                                                                   self.segmentRadius * 2.0f,
+                                                                                   self.segmentRadius * 2.0f)];
+            
+            [[UIColor colorWithWhite:1.0f alpha:alpha] setFill];
+            [path fill];
+        }
+        else if (self.segmentStyle == JBWatchActivityIndicatorSegmentStyleStroke) {
+            
+            CGFloat segmentStartAngle = (((CGFloat)segmentIndex / (CGFloat)self.numberOfSegments) * PI2) + strokeSpacingRadians;
+            CGFloat segmentEndAngle = (((CGFloat)(segmentIndex + 1) / (CGFloat)self.numberOfSegments) * PI2) - strokeSpacingRadians;
+            
+            UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointZero
+                                                                radius:self.indicatorRadius
+                                                            startAngle:segmentStartAngle
+                                                              endAngle:segmentEndAngle
+                                                             clockwise:YES];
+            path.lineWidth = self.segmentRadius;
+            path.lineCapStyle = kCGLineCapButt;
+            
+            [[UIColor colorWithWhite:1.0f alpha:alpha] setStroke];
+            [path stroke];
+        }
     }
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return image;
 }
 

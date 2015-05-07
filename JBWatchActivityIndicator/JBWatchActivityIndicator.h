@@ -40,18 +40,29 @@ typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorType) {
     JBWatchActivityIndicatorTypeDotsLarge,
     JBWatchActivityIndicatorTypeRing,
     JBWatchActivityIndicatorTypeRingSmall,
-    JBWatchActivityIndicatorTypeRingLarge
+    JBWatchActivityIndicatorTypeRingLarge,
+    JBWatchActivityIndicatorTypeSegments,
+    JBWatchActivityIndicatorTypeSegmentsSmall,
+    JBWatchActivityIndicatorTypeSegmentsLarge
+};
+
+typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorSegmentStyle) {
+    
+    JBWatchActivityIndicatorSegmentStyleCircle,
+    JBWatchActivityIndicatorSegmentStyleStroke
 };
 
 @interface JBWatchActivityIndicator : NSObject
 
-@property (nonatomic, readwrite, assign)    NSUInteger      numberOfSegments;
-@property (nonatomic, readwrite, assign)    CGFloat         segmentRadius;
-@property (nonatomic, readwrite, assign)    CGFloat         indicatorRadius;
-@property (nonatomic, readwrite, assign)    CGFloat         brightestAlpha;
-@property (nonatomic, readwrite, assign)    CGFloat         darkestAlpha;
-@property (nonatomic, readwrite, assign)    CGFloat         numberOfFrames;
-@property (nonatomic, readwrite, assign)    CGFloat         indicatorScale;
+@property (nonatomic, readwrite, assign)    JBWatchActivityIndicatorSegmentStyle    segmentStyle;
+@property (nonatomic, readwrite, assign)    NSUInteger                              numberOfSegments;
+@property (nonatomic, readwrite, assign)    CGFloat                                 segmentRadius;
+@property (nonatomic, readwrite, assign)    CGFloat                                 strokeSpacingDegrees;
+@property (nonatomic, readwrite, assign)    CGFloat                                 indicatorRadius;
+@property (nonatomic, readwrite, assign)    CGFloat                                 brightestAlpha;
+@property (nonatomic, readwrite, assign)    CGFloat                                 darkestAlpha;
+@property (nonatomic, readwrite, assign)    CGFloat                                 numberOfFrames;
+@property (nonatomic, readwrite, assign)    CGFloat                                 indicatorScale;
 
 - (instancetype)initWithType:(JBWatchActivityIndicatorType)type NS_DESIGNATED_INITIALIZER;
 

@@ -14,7 +14,6 @@
 		090AF1DB1AF666F2008C4028 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090AF1DA1AF666F2008C4028 /* Images.xcassets */; };
 		090AF1EA1AF666F2008C4028 /* JBWatchActivityIndicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 090AF1E91AF666F2008C4028 /* JBWatchActivityIndicatorTests.m */; };
 		090AF1F51AF6671E008C4028 /* JBWatchActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 090AF1F41AF6671E008C4028 /* JBWatchActivityIndicator.m */; };
-		09E51B561AF6CC8900CD646E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 09E51B551AF6CC8900CD646E /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,7 +224,6 @@
 			files = (
 				090AF1D61AF666F2008C4028 /* ViewController.m in Sources */,
 				090AF1D31AF666F2008C4028 /* AppDelegate.m in Sources */,
-				09E51B561AF6CC8900CD646E /* README.md in Sources */,
 				090AF1F51AF6671E008C4028 /* JBWatchActivityIndicator.m in Sources */,
 				090AF1D01AF666F2008C4028 /* main.m in Sources */,
 			);

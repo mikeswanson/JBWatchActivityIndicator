@@ -14,10 +14,14 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 @interface ViewController ()
 
 @property (nonatomic, readwrite, weak)      IBOutlet    UIImageView                 *imageView;
+@property (nonatomic, readwrite, weak)      IBOutlet    UISegmentedControl          *styleSegmentedControl;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *segmentsStepper;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *segmentsLabel;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *segmentRadiusStepper;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *segmentRadiusLabel;
+@property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *strokeSpacingTitleLabel;
+@property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *strokeSpacingStepper;
+@property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *strokeSpacingLabel;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *indicatorRadiusStepper;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *indicatorRadiusLabel;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *framesStepper;
@@ -56,6 +60,7 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 
 - (void)initializeControls {
     
+    self.styleSegmentedControl.selectedSegmentIndex = self.watchActivityIndicator.segmentStyle;
     self.segmentsStepper.value = self.watchActivityIndicator.numberOfSegments;
     self.segmentRadiusStepper.value = self.watchActivityIndicator.segmentRadius;
     self.indicatorRadiusStepper.value = self.watchActivityIndicator.indicatorRadius;
@@ -69,8 +74,16 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 
 - (void)update {
     
+    BOOL strokeSpacingEnabled = (self.styleSegmentedControl.selectedSegmentIndex == JBWatchActivityIndicatorSegmentStyleStroke);
+    self.strokeSpacingTitleLabel.enabled = strokeSpacingEnabled;
+    self.strokeSpacingStepper.enabled = strokeSpacingEnabled;
+    self.strokeSpacingLabel.enabled = strokeSpacingEnabled;
+    BOOL strokeSpacingWarning = (self.strokeSpacingStepper.value >= (360.0f / self.segmentsStepper.value));
+    self.strokeSpacingLabel.textColor = (strokeSpacingWarning ? [UIColor redColor] : [UIColor blackColor]);
+    
     self.segmentsLabel.text = [NSString stringWithFormat:@"%.0f", self.segmentsStepper.value];
     self.segmentRadiusLabel.text = [NSString stringWithFormat:@"%.2f", self.segmentRadiusStepper.value];
+    self.strokeSpacingLabel.text = [NSString stringWithFormat:@"%.1f°", self.strokeSpacingStepper.value];
     self.indicatorRadiusLabel.text = [NSString stringWithFormat:@"%.2f", self.indicatorRadiusStepper.value];
     self.framesLabel.text = [NSString stringWithFormat:@"%.0f (%.1f fps)", self.framesStepper.value, (self.framesStepper.value / self.durationStepper.value)];
     self.indicatorScaleLabel.text = [NSString stringWithFormat:@"%.2f", self.indicatorScaleStepper.value];
@@ -98,6 +111,17 @@ static NSString * const kDefaultImagePrefix = @"Activity";
     [self applyType:JBWatchActivityIndicatorTypeRing];
 }
 
+- (IBAction)segmentsButtonTouched:(UIButton *)sender {
+    
+    [self applyType:JBWatchActivityIndicatorTypeSegments];
+}
+
+- (IBAction)styleSegmentedControlValueChanged:(UISegmentedControl *)sender {
+    
+    self.watchActivityIndicator.segmentStyle = (JBWatchActivityIndicatorSegmentStyle)sender.selectedSegmentIndex;
+    [self update];
+}
+
 - (IBAction)segmentsStepperValueChanged:(UIStepper *)sender {
     
     self.watchActivityIndicator.numberOfSegments = sender.value;
@@ -107,6 +131,12 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 - (IBAction)segmentRadiusStepperValueChanged:(UIStepper *)sender {
 
     self.watchActivityIndicator.segmentRadius = sender.value;
+    [self update];
+}
+
+- (IBAction)strokeSpacingStepperValueChanged:(UIStepper *)sender {
+    
+    self.watchActivityIndicator.strokeSpacingDegrees = sender.value;
     [self update];
 }
 
