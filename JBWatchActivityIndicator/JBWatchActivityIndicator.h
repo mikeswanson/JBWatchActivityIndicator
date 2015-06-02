@@ -52,9 +52,16 @@ typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorSegmentStyle) {
     JBWatchActivityIndicatorSegmentStyleStroke
 };
 
+typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorColorStyle) {
+    
+    JBWatchActivityIndicatorColorStyleWhite,
+    JBWatchActivityIndicatorColorStyleBlack
+};
+
 @interface JBWatchActivityIndicator : NSObject
 
 @property (nonatomic, readwrite, assign)    JBWatchActivityIndicatorSegmentStyle    segmentStyle;
+@property (nonatomic, readwrite, assign)    JBWatchActivityIndicatorColorStyle      colorStyle;
 @property (nonatomic, readwrite, assign)    NSUInteger                              numberOfSegments;
 @property (nonatomic, readwrite, assign)    CGFloat                                 segmentRadius;
 @property (nonatomic, readwrite, assign)    CGFloat                                 strokeSpacingDegrees;

@@ -15,6 +15,7 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 
 @property (nonatomic, readwrite, weak)      IBOutlet    UIImageView                 *imageView;
 @property (nonatomic, readwrite, weak)      IBOutlet    UISegmentedControl          *styleSegmentedControl;
+@property (nonatomic, readwrite, weak)      IBOutlet    UISegmentedControl          *colorSegmentedControl;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *segmentsStepper;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *segmentsLabel;
 @property (nonatomic, readwrite, weak)      IBOutlet    UIStepper                   *segmentRadiusStepper;
@@ -61,6 +62,7 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 - (void)initializeControls {
     
     self.styleSegmentedControl.selectedSegmentIndex = self.watchActivityIndicator.segmentStyle;
+    self.colorSegmentedControl.selectedSegmentIndex=self.watchActivityIndicator.colorStyle;
     self.segmentsStepper.value = self.watchActivityIndicator.numberOfSegments;
     self.segmentRadiusStepper.value = self.watchActivityIndicator.segmentRadius;
     self.indicatorRadiusStepper.value = self.watchActivityIndicator.indicatorRadius;
@@ -114,6 +116,14 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 - (IBAction)segmentsButtonTouched:(UIButton *)sender {
     
     [self applyType:JBWatchActivityIndicatorTypeSegments];
+}
+
+- (IBAction)styleColorControlValueChanged:(UISegmentedControl *)sender {
+    
+    self.watchActivityIndicator.colorStyle = (JBWatchActivityIndicatorColorStyle)sender.selectedSegmentIndex;
+    self.imageContainer.backgroundColor =
+    self.watchActivityIndicator.colorStyle==JBWatchActivityIndicatorColorStyleWhite?[UIColor blackColor]:[UIColor whiteColor];
+    [self update];
 }
 
 - (IBAction)styleSegmentedControlValueChanged:(UISegmentedControl *)sender {
