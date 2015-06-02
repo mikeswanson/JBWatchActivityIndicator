@@ -50,6 +50,7 @@ static const double PI2 = M_PI * 2.0;
     if (self) {
 
         _segmentStyle = JBWatchActivityIndicatorSegmentStyleCircle;
+        _colorStyle = JBWatchActivityIndicatorColorStyleWhite;
         _strokeSpacingDegrees = 1.0f;
         _indicatorRadius = 10.0f;
         _brightestAlpha = (254.0f / 255.0f);
@@ -168,7 +169,11 @@ static const double PI2 = M_PI * 2.0;
                                                                                    self.segmentRadius * 2.0f,
                                                                                    self.segmentRadius * 2.0f)];
             
-            [[UIColor colorWithWhite:1.0f alpha:alpha] setFill];
+            if(self.colorStyle==JBWatchActivityIndicatorColorStyleBlack) {
+                [[UIColor colorWithWhite:0.3f alpha:alpha] setFill];
+            } else {
+                [[UIColor colorWithWhite:1.0f alpha:alpha] setFill];
+            }
             [path fill];
         }
         else if (self.segmentStyle == JBWatchActivityIndicatorSegmentStyleStroke) {
@@ -184,7 +189,12 @@ static const double PI2 = M_PI * 2.0;
             path.lineWidth = self.segmentRadius;
             path.lineCapStyle = kCGLineCapButt;
             
-            [[UIColor colorWithWhite:1.0f alpha:alpha] setStroke];
+            if(self.colorStyle==JBWatchActivityIndicatorColorStyleBlack) {
+                [[UIColor colorWithWhite:0.3f alpha:alpha] setStroke];
+            } else {
+                [[UIColor colorWithWhite:1.0f alpha:alpha] setStroke];
+            }
+            
             [path stroke];
         }
     }
