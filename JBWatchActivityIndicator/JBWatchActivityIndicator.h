@@ -43,7 +43,8 @@ typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorType) {
     JBWatchActivityIndicatorTypeRingLarge,
     JBWatchActivityIndicatorTypeSegments,
     JBWatchActivityIndicatorTypeSegmentsSmall,
-    JBWatchActivityIndicatorTypeSegmentsLarge
+    JBWatchActivityIndicatorTypeSegmentsLarge,
+    JBWatchActivityIndicatorTypeRingDevide
 };
 
 typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorSegmentStyle) {
@@ -63,6 +64,7 @@ typedef NS_ENUM(NSInteger, JBWatchActivityIndicatorSegmentStyle) {
 @property (nonatomic, readwrite, assign)    CGFloat                                 darkestAlpha;
 @property (nonatomic, readwrite, assign)    CGFloat                                 numberOfFrames;
 @property (nonatomic, readwrite, assign)    CGFloat                                 indicatorScale;
+@property (nonatomic, readwrite, assign)    BOOL                                    isDevideMode;
 
 - (instancetype)initWithType:(JBWatchActivityIndicatorType)type NS_DESIGNATED_INITIALIZER;
 
