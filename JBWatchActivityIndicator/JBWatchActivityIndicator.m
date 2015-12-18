@@ -55,7 +55,7 @@ static const double PI2 = M_PI * 2.0;
         _brightestAlpha = (254.0f / 255.0f);
         _darkestAlpha = (57.0f / 255.0f);
         _numberOfFrames = 15;
-        _isDevideMode = NO;
+        _isDevideMode = YES;
         
         switch (type) {
                 
@@ -86,7 +86,7 @@ static const double PI2 = M_PI * 2.0;
             case JBWatchActivityIndicatorTypeRingSmall:
             case JBWatchActivityIndicatorTypeRingLarge: {
                 
-                _numberOfSegments = 60;
+                _numberOfSegments = 160;
                 _segmentRadius = 1.0f;
                 _indicatorScale = (type == JBWatchActivityIndicatorTypeRing ? 1.0f :
                                    (type == JBWatchActivityIndicatorTypeRingSmall ? 0.5f : 2.0f));
