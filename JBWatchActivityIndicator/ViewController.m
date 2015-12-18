@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "JBWatchActivityIndicator.h"
+
 static NSString * const kDefaultImagePrefix = @"Activity";
 
 @interface ViewController ()
@@ -36,6 +37,7 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 @property (nonatomic, readwrite, weak)      IBOutlet    UITextField                 *imagePrefixTextField;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *totalImageBytesLabel;
 @property (nonatomic, readwrite, strong)                JBWatchActivityIndicator    *watchActivityIndicator;
+
 @end
 
 @implementation ViewController
@@ -45,7 +47,8 @@ static NSString * const kDefaultImagePrefix = @"Activity";
     [super viewDidLoad];
     
     self.totalImageBytesLabel.text = @"";
-
+    
+    [self applyType:JBWatchActivityIndicatorTypeDefault];
     //[self applyType:JBWatchActivityIndicatorTypeRingDevide];
 }
 

@@ -86,7 +86,7 @@ static const double PI2 = M_PI * 2.0;
             case JBWatchActivityIndicatorTypeRingSmall:
             case JBWatchActivityIndicatorTypeRingLarge: {
                 
-                _numberOfSegments = 160;
+                _numberOfSegments = 60;
                 _segmentRadius = 1.0f;
                 _indicatorScale = (type == JBWatchActivityIndicatorTypeRing ? 1.0f :
                                    (type == JBWatchActivityIndicatorTypeRingSmall ? 0.5f : 2.0f));
