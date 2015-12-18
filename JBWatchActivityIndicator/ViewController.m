@@ -47,8 +47,9 @@ static NSString * const kDefaultImagePrefix = @"Activity";
     [super viewDidLoad];
     
     self.totalImageBytesLabel.text = @"";
-
-    [self applyType:JBWatchActivityIndicatorTypeDefault];
+    
+    //[self applyType:JBWatchActivityIndicatorTypeDefault];
+    [self applyType:JBWatchActivityIndicatorTypeRingDevide];
 }
 
 - (void)applyType:(JBWatchActivityIndicatorType)type {

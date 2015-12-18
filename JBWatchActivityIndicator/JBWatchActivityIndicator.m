@@ -55,7 +55,8 @@ static const double PI2 = M_PI * 2.0;
         _brightestAlpha = (254.0f / 255.0f);
         _darkestAlpha = (57.0f / 255.0f);
         _numberOfFrames = 15;
-
+        _isDevideMode = NO;
+        
         switch (type) {
                 
             case JBWatchActivityIndicatorTypeDefault:
@@ -78,6 +79,9 @@ static const double PI2 = M_PI * 2.0;
                                    (type == JBWatchActivityIndicatorTypeDotsSmall ? 0.5f : 2.0f));
                 break;
             }
+            case JBWatchActivityIndicatorTypeRingDevide:
+                _isDevideMode = YES;
+                
             case JBWatchActivityIndicatorTypeRing:
             case JBWatchActivityIndicatorTypeRingSmall:
             case JBWatchActivityIndicatorTypeRingLarge: {
@@ -153,8 +157,9 @@ static const double PI2 = M_PI * 2.0;
     
     for (NSUInteger segmentIndex = 0; segmentIndex < self.numberOfSegments; segmentIndex++) {
         
-        CGFloat alphaAngle = (((CGFloat)(self.numberOfSegments - segmentIndex) / (CGFloat)self.numberOfSegments) * PI2);
+        CGFloat alphaAngle = (((CGFloat)(self.numberOfSegments - [self alphaIndex:segmentIndex]) / (CGFloat)self.numberOfSegments) * PI2);
         CGFloat alpha = alphaAxis + (sinf(frameAngle + alphaAngle) * semiAmplitude);
+        alpha = 1-alpha;
         
         if (self.segmentStyle == JBWatchActivityIndicatorSegmentStyleCircle) {
             
@@ -193,6 +198,17 @@ static const double PI2 = M_PI * 2.0;
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+- (NSUInteger)alphaIndex:(NSUInteger)segmentIndex
+{
+    NSUInteger alphaIndex = segmentIndex;
+    if (_isDevideMode){
+        if (alphaIndex > self.numberOfSegments/2-1){
+            alphaIndex -= self.numberOfSegments/2-1;
+        }
+    }
+    return alphaIndex;
 }
 
 @end
