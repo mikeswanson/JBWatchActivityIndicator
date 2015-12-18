@@ -14,7 +14,6 @@
 		090AF1DB1AF666F2008C4028 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090AF1DA1AF666F2008C4028 /* Images.xcassets */; };
 		090AF1EA1AF666F2008C4028 /* JBWatchActivityIndicatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 090AF1E91AF666F2008C4028 /* JBWatchActivityIndicatorTests.m */; };
 		090AF1F51AF6671E008C4028 /* JBWatchActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 090AF1F41AF6671E008C4028 /* JBWatchActivityIndicator.m */; };
-		35D3930B1C229DE200E90D80 /* DoubleIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D3930A1C229DE200E90D80 /* DoubleIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +42,6 @@
 		090AF1F31AF6671E008C4028 /* JBWatchActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBWatchActivityIndicator.h; sourceTree = "<group>"; };
 		090AF1F41AF6671E008C4028 /* JBWatchActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBWatchActivityIndicator.m; sourceTree = "<group>"; };
 		09E51B551AF6CC8900CD646E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		35D393091C229DE200E90D80 /* DoubleIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleIndicator.h; sourceTree = "<group>"; };
-		35D3930A1C229DE200E90D80 /* DoubleIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +90,6 @@
 				090AF1D51AF666F2008C4028 /* ViewController.m */,
 				090AF1F31AF6671E008C4028 /* JBWatchActivityIndicator.h */,
 				090AF1F41AF6671E008C4028 /* JBWatchActivityIndicator.m */,
-				35D393091C229DE200E90D80 /* DoubleIndicator.h */,
-				35D3930A1C229DE200E90D80 /* DoubleIndicator.m */,
 				090AF1D71AF666F2008C4028 /* Main.storyboard */,
 				090AF1DA1AF666F2008C4028 /* Images.xcassets */,
 				090AF1CD1AF666F2008C4028 /* Supporting Files */,
@@ -227,7 +222,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D3930B1C229DE200E90D80 /* DoubleIndicator.m in Sources */,
 				090AF1D61AF666F2008C4028 /* ViewController.m in Sources */,
 				090AF1D31AF666F2008C4028 /* AppDelegate.m in Sources */,
 				090AF1F51AF6671E008C4028 /* JBWatchActivityIndicator.m in Sources */,

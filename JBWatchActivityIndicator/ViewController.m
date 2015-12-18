@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "JBWatchActivityIndicator.h"
-#import "DoubleIndicator.h"
 static NSString * const kDefaultImagePrefix = @"Activity";
 
 @interface ViewController ()
@@ -37,7 +36,6 @@ static NSString * const kDefaultImagePrefix = @"Activity";
 @property (nonatomic, readwrite, weak)      IBOutlet    UITextField                 *imagePrefixTextField;
 @property (nonatomic, readwrite, weak)      IBOutlet    UILabel                     *totalImageBytesLabel;
 @property (nonatomic, readwrite, strong)                JBWatchActivityIndicator    *watchActivityIndicator;
-@property (nonatomic, readwrite, strong)                DoubleIndicator             *doubleIndicator;
 @end
 
 @implementation ViewController
@@ -49,15 +47,6 @@ static NSString * const kDefaultImagePrefix = @"Activity";
     self.totalImageBytesLabel.text = @"";
 
     //[self applyType:JBWatchActivityIndicatorTypeRingDevide];
-    [self testdoubleRing];
-}
-
-- (void)testdoubleRing
-{
-    //self.doubleIndicator = [[DoubleIndicator alloc] init];
-    //[self update];
-
-    self.imageView.image = [[[DoubleIndicator alloc] init] animatedImageWithDuration:1.0f];
 }
 
 - (void)applyType:(JBWatchActivityIndicatorType)type {
