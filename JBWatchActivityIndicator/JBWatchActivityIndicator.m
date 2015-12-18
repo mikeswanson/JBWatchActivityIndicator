@@ -55,7 +55,7 @@ static const double PI2 = M_PI * 2.0;
         _brightestAlpha = (254.0f / 255.0f);
         _darkestAlpha = (57.0f / 255.0f);
         _numberOfFrames = 15;
-        _isDevideMode = YES;
+        _isDevideMode = NO;
         
         switch (type) {
                 
