@@ -12,6 +12,6 @@ an indicator while our interface controllers are loading.
   s.watchos.deployment_target = '2.0'
   s.source       = { :git => "https://github.com/ivanbruel/JBWatchActivityIndicator", :tag => s.version }
   s.source_files  = "JBWatchActivityIndicator/JBWatchActivityIndicator.h", "JBWatchActivityIndicator/JBWatchActivityIndicator.m"
-  s.framework  = "WatchKit UIKit"
+  s.framework  = "WatchKit"
 
 end
